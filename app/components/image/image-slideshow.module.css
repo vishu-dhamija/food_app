@@ -1,0 +1,26 @@
+.slideshow {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+    height: 300px; /* Match the height in Image component */
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  .slideshow img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .active {
+    opacity: 1;
+    z-index: 1;
+  }
+  
+  .inactive {
+    opacity: 0;
+    z-index: 0;
+  }
+  
