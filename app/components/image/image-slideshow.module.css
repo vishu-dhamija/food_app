@@ -1,9 +1,9 @@
-.slideshow {
+/* .slideshow {
     position: relative;
     width: 100%;
     max-width: 600px; /* Adjust as needed */
-    height: 300px; /* Match the height in Image component */
-    margin: 0 auto;
+    /* height: 300px; /* Match the height in Image component */
+    /* margin: 0 auto;
     overflow: hidden;
   }
   
@@ -22,5 +22,47 @@
   .inactive {
     opacity: 0;
     z-index: 0;
+  }
+   */ 
+
+   .slideshow {
+    position: relative;
+    width: 100%;
+    max-width: 100%; /* Allow full-width on smaller screens */
+    height: 300px; /* Default height */
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  .slideshow img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 1s ease-in-out;
+    width: 100%; /* Make sure the image scales to fit the container */
+    object-fit: cover; /* Ensures the image covers the space without distorting */
+  }
+  
+  .active {
+    opacity: 1;
+    z-index: 1;
+  }
+  
+  .inactive {
+    opacity: 0;
+    z-index: 0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .slideshow {
+      height: 250px; /* Adjust height for tablets */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .slideshow {
+      height: 200px; /* Adjust height for mobile */
+    }
   }
   
