@@ -1,3 +1,4 @@
+'use client';
 import classes from './page.module.css';
 import { useState } from 'react';
 
@@ -91,7 +92,7 @@ export default function MealFinder() {
                   key={meal.idMeal}
                   onClick={() => getMealRecipe(meal.idMeal)}
                 >
-                  
+
                   <div className={classes.mealimg}>
                     <img src={meal.strMealThumb} alt={meal.strMeal} />
                   </div>
