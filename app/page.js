@@ -5,6 +5,7 @@ import Link from "next/link";
 import ImageSlideshow from "./components/image/image-slideshow";
 
 import classes from "./page.module.css";
+import MealFinder from "./components/search/page";
 
 export default function Home() {
  
@@ -34,6 +35,11 @@ export default function Home() {
       </header>
 
       <main>
+        <div className={classes.search}>
+          <MealFinder />
+        </div>
+
+
         <section className={classes.section}>
           <h2>How It Works</h2>
           <p>

@@ -1,0 +1,131 @@
+/* General container styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .wrapper {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .search {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    color: #d65108;
+    margin-bottom: 10px;
+  }
+  
+  .searchbox {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .searchcontrol {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1px solid #d65108;
+    border-radius: 25px 0 0 25px;
+    outline: none;
+    color: #d65108;
+    flex-grow: 1;
+    min-width: 200px;
+  }
+  
+  .searchcontrol::placeholder {
+    color: #d65108;
+  }
+  
+  .searchbtn {
+    background-color: #d65108;
+    color: #fff;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .searchbtn:hover {
+    background-color: #b54507;
+  }
+  
+  /* Meal Result Section */
+  .mealresult {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping of items */
+    justify-content: space-between; /* Space between items */
+    gap: 20px;
+  }
+  
+  .mealitem {
+    flex: 1 1 calc(25% - 20px); /* Default 4 items per row with 20px gap */
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .mealitem:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mealimg img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .mealname {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .mealname h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #d65108;
+  }
+  
+  .recipe {
+    text-decoration: none;
+    color: #fff;
+    background-color: #d65108;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .recipe:hover {
+    background-color: #b54507;
+  }
+  
+  /* For laptops and large screens (4 items per row) */
+  @media screen and (min-width: 1024px) and (max-width: 1366px) {
+    .mealitem {
+      flex: 1 1 calc(25% - 20px); /* 4 items per row on laptops */
+    }
+  
+    .searchbox {
+      width: 60%;
+      margin: 0 auto;
+    }
+  }
+  
+  /* For smaller screens (tablet, mobile) - Don't apply any changes here */
+  @media screen and (max-width: 1023px) {
+    .mealitem {
+      flex: 1 1 100%; /* Default to 1 item per row on smaller screens */
+    }
+  }
+  
