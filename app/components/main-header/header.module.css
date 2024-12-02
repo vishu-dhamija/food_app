@@ -110,7 +110,7 @@
 }
 .navLink {
   display: inline-block;
-  
+  margin: 0.5rem 1rem;
   text-decoration: none;
   color: #ddd6cb;
   font-weight: bold;
@@ -140,4 +140,6 @@ button.navLink {
   font-size: 1.25rem;
   padding: 0.5rem 1rem;
 }
+
+
 

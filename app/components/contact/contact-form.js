@@ -1,67 +1,38 @@
 'use client';
-
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import classes from './contact-form.module.css';
+import Link from 'next/link';
 
 // Form data structure
 const ContactForm = ({ onClose }) => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [isLoading, setIsLoading] = useState(false);
-  const [randomImage, setRandomImage] = useState(null); // For random image URL
-  const [formResponse, setFormResponse] = useState(null); // To store the API response
-  const [showImageModal, setShowImageModal] = useState(false); // For controlling image modal visibility
+  const [formResponse, setFormResponse] = useState(null); // To store the simulated response
   const [showCommunityPerksModal, setShowCommunityPerksModal] = useState(false); // For Community Perks modal
 
-  // Fetch random image from Unsplash API on component mount
+  // Simulate fetching a random image on component mount
   useEffect(() => {
-    const fetchImage = async () => {
-      try {
-        const imageResponse = await axios.get('https://api.unsplash.com/photos/random', {
-          headers: {
-            Authorization: `Client-ID ZMxMGwLX2iPL0v9URq4R7LHulqWmOQZnNa6acV2ZVZk`, // Replace with your Unsplash API key
-          },
-        });
-        setRandomImage(imageResponse.data[0]?.urls?.regular); // Assuming response contains image URL
-      } catch (error) {
-        console.error('Error fetching image:', error);
-      }
-    };
-
-    fetchImage();
-  }, []); // Empty dependency array means this runs once when the component mounts
+    // Example useEffect implementation (can be removed if unused)
+    console.log("ContactForm mounted");
+  }, []); // Add empty dependency array to ensure it runs only once on mount
 
   // Form submission handler
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     setIsLoading(true);
 
-    try {
-      // API Call 1: Submit form data to a server (Example: JSONPlaceholder)
-      const formResponse = await axios.post('https://jsonplaceholder.typicode.com/posts', data);
-      setFormResponse(formResponse.data);
+    setTimeout(() => {
+      // Simulate successful form submission
+      setFormResponse({
+        message: "Thank you for reaching out! We'll get back to you soon.",
+        data,
+      });
 
-      // Success alert and reset the form
-      alert("Thank you for reaching out! We'll get back to you soon.");
+      // Reset form and show modals
       reset();
-      onClose();
-
-      // Show the image modal after fetching the image
-      setShowImageModal(true);
-
-      // Show the Community Perks modal after the form is submitted
       setShowCommunityPerksModal(true);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Something went wrong. Please try again later.');
-    } finally {
       setIsLoading(false);
-    }
-  };
-
-  // Function to close the image modal
-  const closeImageModal = () => {
-    setShowImageModal(false);
+    }, 1000); // Simulate network delay
   };
 
   // Function to close the Community Perks modal
@@ -69,19 +40,13 @@ const ContactForm = ({ onClose }) => {
     setShowCommunityPerksModal(false);
   };
 
+ 
   return (
     <div className={classes.overlay}>
       <div className={classes.modal}>
         <button className={classes.closeButton} onClick={onClose}>
           ✖
         </button>
-        
-        {/* Display the random image from Unsplash */}
-        {randomImage && (
-          <div className={classes.imageContainer}>
-            <img src={randomImage} alt="Random from Unsplash" className={classes.randomImage} />
-          </div>
-        )}
 
         <h2 className={classes.hd}>Contact Us</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -136,48 +101,25 @@ const ContactForm = ({ onClose }) => {
           </button>
         </form>
 
-        {/* Show form submission response */}
+        {/* Show simulated form submission response */}
         {formResponse && (
           <div className={classes.formResponse}>
-            <h3>Form Submitted Successfully!</h3>
-            <pre>{JSON.stringify(formResponse, null, 2)}</pre>
+            <h3>{formResponse.message}</h3>
+            <pre>{JSON.stringify(formResponse.data, null, 2)}</pre>
           </div>
         )}
 
-        {/* Show the image modal (popup) */}
-        {showImageModal && randomImage && (
-          <div className={classes.imageModal}>
-            <div className={classes.modalContent}>
-              <h3>Here is your random image!</h3>
-              <img src={randomImage} alt="Random from Unsplash" className={classes.randomImage} />
-              <button className={classes.closeImageModalButton} onClick={closeImageModal}>
-                Close
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Show the Community Perks modal (popup) */}
+        {/* Show the Community Perks modal */}
         {showCommunityPerksModal && (
           <div className={classes.communityPerksModal}>
             <div className={classes.modalContent}>
-              <h3>Community Perks</h3>
-              <ul>
-                <li>
-                  <strong>A delicious meal</strong>
-                  <p>Share & discover recipes</p>
-                </li>
-                <li>
-                  <strong>A crowd of people, cooking</strong>
-                  <p>Find new friends & like-minded people</p>
-                </li>
-                <li>
-                  <strong>A crowd of people at a cooking event</strong>
-                  <p>Participate in exclusive events</p>
-                </li>
-              </ul>
-              <button className={classes.closeCommunityPerksModalButton} onClick={closeCommunityPerksModal}>
-                Close
+              <h2>Thank You!</h2>
+              <p>Thank you for your response. We will get back to you soon.</p>
+              <button 
+                className={classes.closeCommunityPerksModalButton} 
+                onClick={handleRedirectToMealsPage}
+              >
+                Go to Meals Page
               </button>
             </div>
           </div>

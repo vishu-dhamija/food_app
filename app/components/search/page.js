@@ -83,63 +83,60 @@ export default function MealFinder() {
         </div>
 
         <div className={classes.mealresult}>
-          <h2 className={classes.title}>Your Search Results:</h2>
-          <div id="meal">
-            {meals.length > 0 ? (
-              meals.map((meal) => (
-                <div
-                  className={classes.mealitem}
-                  key={meal.idMeal}
-                  onClick={() => getMealRecipe(meal.idMeal)}
-                >
-
-                  <div className={classes.mealimg}>
-                    <img src={meal.strMealThumb} alt={meal.strMeal} />
-                  </div>
-                  <div className={classes.mealname}>
-                    <h3>{meal.strMeal}</h3>
-                    <button className={classes.recipe}>Get Recipe</button>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p>Sorry, we didn't find any meal!</p>
-            )}
+  <h2 className={classes.title}>Your Search Results:</h2>
+  <div id="meal">
+    {meals.length > 0 ? (
+      meals.map((meal) => (
+        <div className={classes.mealitem} key={meal.idMeal}>
+          <div className={classes.mealimg}>
+            <img src={meal.strMealThumb} alt={meal.strMeal} />
+          </div>
+          <div className={classes.mealname}>
+            <h3>{meal.strMeal}</h3>
+            
           </div>
         </div>
+      ))
+    ) : (
+      <p>No meals found. Try another search!</p>
+    )}
+  </div>
+</div>
 
-        {mealDetails && (
-          <div className={classes.mealdetails}>
-            <button
-              type="button"
-              className={classes.recipeclose}
-              onClick={() => setMealDetails(null)}
-            >
-              <i className="fas fa-times"></i>
-            </button>
+{/* Render mealDetails if available */}
+{mealDetails && (
+  <div className={classes.mealdetails}>
+    <button
+      type="button"
+      className={classes.recipeclose}
+      onClick={() => setMealDetails(null)} // Close the details
+    >
+      <i className="fas fa-times"></i>
+    </button>
 
-            <div className={classes.details}>
-              <h2 className={classes.recipetitle}>{mealDetails.strMeal}</h2>
-              <p className={classes.recipecategory}>{mealDetails.strCategory}</p>
-              <div className={classes.instruct}>
-                <h3>Instructions:</h3>
-                <p>{mealDetails.strInstructions}</p>
-              </div>
-              <div className={classes.recipeimg}>
-                <img src={mealDetails.strMealThumb} alt={mealDetails.strMeal} />
-              </div>
-              <div className={classes.recipelink}>
-                <a
-                  href={mealDetails.strYoutube}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Watch Video
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
+    <div className={classes.details}>
+      <h2 className={classes.recipetitle}>{mealDetails.strMeal}</h2>
+      <p className={classes.recipecategory}>{mealDetails.strCategory}</p>
+      <div className={classes.instruct}>
+        <h3>Instructions:</h3>
+        <p>{mealDetails.strInstructions}</p>
+      </div>
+      <div className={classes.recipeimg}>
+        <img src={mealDetails.strMealThumb} alt={mealDetails.strMeal} />
+      </div>
+      <div className={classes.recipelink}>
+        <a
+          href={mealDetails.strYoutube}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Watch Video
+        </a>
+      </div>
+    </div>
+  </div>
+)}
+
       </div>
     </div>
   );
